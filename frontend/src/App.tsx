@@ -1,9 +1,7 @@
+import NavBar from "components/NavBar";
+
 function App() {
-  return (
-    <div>
-      <p>Chama</p>
-    </div>
-  );
+  return <NavBar />;
 }
 
 export default App;
