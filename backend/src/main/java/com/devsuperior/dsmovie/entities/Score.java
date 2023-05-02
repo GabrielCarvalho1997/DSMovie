@@ -15,11 +15,11 @@ public class Score {
      private Double nota;
 
      public void setMovie(Movie movie) {
-          id.setMovie(movie);
+          this.id.setMovie(movie);
      }
 
      public void setUser(User user) {
-          id.setUser(user);
+          this.id.setUser(user);
      }
 
 }
