@@ -37,7 +37,7 @@ const FormCard = ({ movieId }: Props) => {
             <Typography gutterBottom variant="h5" component="div">
               {movie?.title}
             </Typography>
-            <TextField label="Email" variant="outlined" fullWidth />
+            <TextField label="Email" type="email" variant="outlined" fullWidth />
             <Rating
               size="large"
               precision={0.5}
