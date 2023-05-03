@@ -41,7 +41,7 @@ public class ScoreService {
         score.setUser(user);
         score.setNota(dto.getScore());
 
-        score = scoreRepository.save(score);
+        score = scoreRepository.saveAndFlush(score);
 
         double sum = 0.0;
 
@@ -57,6 +57,7 @@ public class ScoreService {
         movie = movieRepository.save(movie);
 
         return new MovieDTO(movie);
+
     }
 
 }
