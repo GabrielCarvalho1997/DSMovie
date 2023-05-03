@@ -1,4 +1,5 @@
 import { Card, CardMedia, CardContent, Typography, Rating, Button, CardActions } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { Movie } from "types/movie";
 
 type Props = {
@@ -6,6 +7,8 @@ type Props = {
 };
 
 const CardMovie = ({ movie }: Props) => {
+  const navigate = useNavigate();
+
   return (
     <Card elevation={4} sx={{ height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", textAlign: "center", paddingBottom: 2 }}>
       <CardMedia component="img" image={movie.image} />
@@ -27,13 +30,13 @@ const CardMovie = ({ movie }: Props) => {
         <Typography component="legend" color="#FAAF00" fontWeight="bold" fontSize="large">
           {movie.score === 0 ? "-" : movie.score.toFixed(1)}
         </Typography>
-        <Rating value={movie.score} readOnly size="large" />
+        <Rating value={movie.score} precision={0.1} readOnly size="large" />
         <Typography component="legend" fontSize="small" sx={{ opacity: "0.7" }}>
           {movie.count} Avaliações
         </Typography>
       </CardContent>
       <CardActions>
-        <Button variant="contained" fullWidth>
+        <Button variant="contained" fullWidth onClick={() => navigate(`/form/${movie.id}`)}>
           Avaliar
         </Button>
       </CardActions>

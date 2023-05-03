@@ -16,6 +16,10 @@ const ListaDSMovie = () => {
     });
   }, [pageNumber]);
 
+  const handleChange = (event: any, value: number) => {
+    setPageNumber(value - 1);
+  };
+
   return (
     <Container maxWidth="lg">
       <Box
@@ -28,7 +32,7 @@ const ListaDSMovie = () => {
           gap: 4,
         }}
       >
-        <Pagination count={3} size="large" showFirstButton showLastButton />
+        <Pagination count={movies?.totalPages} size="large" showFirstButton showLastButton onChange={handleChange} />
         <Grid container item xs={12} spacing={2}>
           {movies?.content.map((movie, i) => (
             <Grid item xs={3} key={i}>
