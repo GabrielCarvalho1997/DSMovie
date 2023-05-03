@@ -1,10 +1,23 @@
 import { Box, Container, Pagination, Grid } from "@mui/material";
+import axios, { AxiosRequestConfig } from "axios";
 import CardMovie from "components/Card";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { MoviePage } from "types/movie";
+import { BASE_URL } from "utils";
 
 const ListaDSMovie = () => {
   const [rating, setRating] = useState<number>(2);
   const [count, setCount] = useState<number>(2);
+  const [pageNumber, setPageNumber] = useState(0);
+
+  useEffect(() => {
+    axios.get(`${BASE_URL}/movies?size=12&page=1`).then((res) => {
+      const data = res.data as MoviePage;
+      console.log(data);
+      setPageNumber(data.number);
+    });
+  }, []);
+
   return (
     <Container maxWidth="lg">
       <Box

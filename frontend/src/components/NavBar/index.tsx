@@ -7,10 +7,14 @@ const NavBar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Container maxWidth="lg">
-          <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              DSMovie
-            </Typography>
+          <Toolbar sx={{ justifyContent: "space-between" }}>
+            <Button color="inherit">
+              <Link href="/home" color="inherit" underline="none">
+                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                  DSMovie
+                </Typography>
+              </Link>
+            </Button>
             <Button color="inherit">
               <Link
                 href="https://github.com/GabrielCarvalho1997/DSMovie"
