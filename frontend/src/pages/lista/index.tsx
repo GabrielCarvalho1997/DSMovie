@@ -1,5 +1,5 @@
 import { Box, Container, Pagination, Grid } from "@mui/material";
-import axios, { AxiosRequestConfig } from "axios";
+import axios from "axios";
 import CardMovie from "components/Card";
 import { useState, useEffect } from "react";
 import { MoviePage } from "types/movie";
@@ -29,7 +29,7 @@ const ListaDSMovie = () => {
         }}
       >
         <Pagination count={3} size="large" showFirstButton showLastButton />
-        <Grid container item xs={12} spacing={2} sx={{ display: "flex", justifyContent: "center" }}>
+        <Grid container item xs={12} spacing={2}>
           {movies?.content.map((movie, i) => (
             <Grid item xs={3} key={i}>
               <CardMovie movie={movie} />

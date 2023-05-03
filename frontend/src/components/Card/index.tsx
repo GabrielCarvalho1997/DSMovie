@@ -1,4 +1,4 @@
-import { Card, CardMedia, CardContent, Typography, Rating, Button } from "@mui/material";
+import { Card, CardMedia, CardContent, Typography, Rating, Button, CardActions } from "@mui/material";
 import { Movie } from "types/movie";
 
 type Props = {
@@ -7,9 +7,9 @@ type Props = {
 
 const CardMovie = ({ movie }: Props) => {
   return (
-    <Card elevation={4} sx={{ height: "100%" }}>
+    <Card elevation={4} sx={{ height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", paddingBottom: 2 }}>
       <CardMedia component="img" image={movie.image} />
-      <CardContent sx={{ display: "flex", flexDirection: "column", gap: 2, alignItems: "center" }}>
+      <CardContent>
         <Typography
           gutterBottom
           variant="h5"
@@ -31,10 +31,12 @@ const CardMovie = ({ movie }: Props) => {
         <Typography component="legend" fontSize="small" sx={{ opacity: "0.7" }}>
           {movie.count} Avaliações
         </Typography>
+      </CardContent>
+      <CardActions>
         <Button variant="contained" fullWidth>
           Avaliar
         </Button>
-      </CardContent>
+      </CardActions>
     </Card>
   );
 };
