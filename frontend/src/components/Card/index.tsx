@@ -7,9 +7,9 @@ type Props = {
 
 const CardMovie = ({ movie }: Props) => {
   return (
-    <Card elevation={4} sx={{ height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", paddingBottom: 2 }}>
+    <Card elevation={4} sx={{ height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", textAlign: "center", paddingBottom: 2 }}>
       <CardMedia component="img" image={movie.image} />
-      <CardContent>
+      <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center" }}>
         <Typography
           gutterBottom
           variant="h5"

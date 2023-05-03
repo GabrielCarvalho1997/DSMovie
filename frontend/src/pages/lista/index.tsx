@@ -10,7 +10,7 @@ const ListaDSMovie = () => {
   const [pageNumber, setPageNumber] = useState(0);
 
   useEffect(() => {
-    axios.get(`${BASE_URL}/movies?size=12&page=${pageNumber}`).then((res) => {
+    axios.get(`${BASE_URL}/movies?size=12&page=${pageNumber}&sort=id`).then((res) => {
       console.log(res.data);
       setMovies(res.data);
     });
