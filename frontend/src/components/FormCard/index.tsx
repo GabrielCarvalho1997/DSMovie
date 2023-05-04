@@ -80,6 +80,9 @@ const FormCard = ({ movieId }: Props) => {
               error={!!errors.email}
               helperText={"Email obrigatório!"}
             />
+            <Typography gutterBottom variant="h6" component="div">
+              Faça sua avaliação!
+            </Typography>
             <Rating
               size="large"
               precision={0.5}
