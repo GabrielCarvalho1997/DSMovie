@@ -15,11 +15,7 @@ const FormCard = ({ movieId }: Props) => {
   const [movie, setMovie] = useState<Movie>();
   const navigate = useNavigate();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<any>();
+  const { register, handleSubmit } = useForm<any>();
 
   useEffect(() => {
     axios.get(`${BASE_URL}/movies/${movieId}`).then((res) => {
@@ -71,14 +67,13 @@ const FormCard = ({ movieId }: Props) => {
               type="email"
               variant="outlined"
               fullWidth
+              required
               {...register("email", {
                 required: {
                   value: true,
                   message: "Email obrigatório",
                 },
               })}
-              error={!!errors.email}
-              helperText={"Email obrigatório!"}
             />
             <Typography gutterBottom variant="h6" component="div">
               Faça sua avaliação!
