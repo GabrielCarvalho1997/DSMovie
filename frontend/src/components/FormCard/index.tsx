@@ -3,7 +3,8 @@ import { Movie } from "types/movie";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "utils";
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
+import { useForm } from "react-hook-form";
 
 type Props = {
   movieId?: string;
@@ -14,16 +15,44 @@ const FormCard = ({ movieId }: Props) => {
   const [movie, setMovie] = useState<Movie>();
   const navigate = useNavigate();
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<any>();
+
   useEffect(() => {
     axios.get(`${BASE_URL}/movies/${movieId}`).then((res) => {
-      console.log(res.data);
       setMovie(res.data);
     });
   }, [movieId]);
 
+  const salvarSolicitacao = (data: any) => {
+    const config: AxiosRequestConfig = {
+      baseURL: BASE_URL,
+      method: "PUT",
+      url: "/scores",
+      data: {
+        email: data.email,
+        movieId: movieId,
+        score: value,
+      },
+    };
+
+    axios(config)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .finally(() => {
+        navigate("/home");
+      });
+  };
+
   return (
     <Container maxWidth="lg">
       <Box
+        component="form"
+        onSubmit={handleSubmit(salvarSolicitacao)}
         sx={{
           display: "flex",
           justifyContent: "center",
@@ -37,16 +66,28 @@ const FormCard = ({ movieId }: Props) => {
             <Typography gutterBottom variant="h5" component="div">
               {movie?.title}
             </Typography>
-            <TextField label="Email" type="email" variant="outlined" fullWidth />
+            <TextField
+              label="Email"
+              type="email"
+              variant="outlined"
+              fullWidth
+              {...register("email", {
+                required: {
+                  value: true,
+                  message: "Email obrigatório",
+                },
+              })}
+              error={!!errors.email}
+              helperText={"Email obrigatório!"}
+            />
             <Rating
               size="large"
               precision={0.5}
-              value={movie?.score}
               onChange={(event, newValue) => {
                 setValue(newValue);
               }}
             />
-            <Button variant="contained" fullWidth onClick={() => navigate("/home")}>
+            <Button variant="contained" fullWidth type="submit">
               Salvar
             </Button>
             <Button variant="contained" fullWidth onClick={() => navigate("/home")}>

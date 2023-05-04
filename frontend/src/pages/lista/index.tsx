@@ -11,7 +11,6 @@ const ListaDSMovie = () => {
 
   useEffect(() => {
     axios.get(`${BASE_URL}/movies?size=12&page=${pageNumber}&sort=id`).then((res) => {
-      console.log(res.data);
       setMovies(res.data);
     });
   }, [pageNumber]);
